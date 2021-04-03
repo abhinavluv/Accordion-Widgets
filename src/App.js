@@ -1,6 +1,7 @@
 import './App.css';
 
 import Accordion from './components/Accordion.component';
+import Search from './components/Search.component';
 
 const items = [
     { title: 'What is React?', content: 'A frontend JS Library' },
@@ -14,7 +15,8 @@ const items = [
 function App() {
     return (
         <div className='App'>
-            <Accordion items={items} />
+            {/* <Accordion items={items} /> */}
+            <Search />
         </div>
     );
 }

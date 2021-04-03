@@ -1,14 +1,24 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 const Accordion = ({ items }) => {
-    const renderedItems = items.map((item) => {
+    const [activeIndex, setActiveIndex] = useState(null);
+
+    const onTitleClick = (index) => {
+        console.log('Title Clicked', index);
+        setActiveIndex(index);
+    };
+
+    const renderedItems = items.map((item, index) => {
+        const active = index === activeIndex ? 'active' : '';
         return (
             <Fragment key={item.title}>
-                <div className='title active'>
+                <div
+                    className={`title ${active}`}
+                    onClick={() => onTitleClick(index)}>
                     <i className='dropdown icon'></i>
                     {item.title}
                 </div>
-                <div className='content active'>
+                <div className={`content ${active}`}>
                     <p>{item.content}</p>
                 </div>
             </Fragment>

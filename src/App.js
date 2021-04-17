@@ -4,6 +4,7 @@ import './App.css';
 import Accordion from './components/Accordion.component';
 import Search from './components/Search.component';
 import Dropdown from './components/Dropdown.component';
+import Translate from './components/Translate.component';
 
 const items = [
     { title: 'What is React?', content: 'A frontend JS Library' },
@@ -27,7 +28,7 @@ function App() {
         <div className='App'>
             {/* <Accordion items={items} /> */}
             {/* <Search /> */}
-            <button onClick={() => setShowDropdown(!showDropdown)}>
+            {/* <button onClick={() => setShowDropdown(!showDropdown)}>
                 Toggle Dropdown
             </button>
             {showDropdown ? (
@@ -36,7 +37,8 @@ function App() {
                     selected={selected}
                     onSelectedChange={setSelected}
                 />
-            ) : null}
+            ) : null} */}
+            <Translate />
         </div>
     );
 }

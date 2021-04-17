@@ -32,15 +32,42 @@ const Search = () => {
             );
             setResults(data.query.search);
         };
-        if (term) search();
+
+        if (term && !results.length) {
+            search();
+        } else {
+            const timeoutId = setTimeout(() => {
+                if (term) search();
+            }, 500);
+            // useEffect with a param term will get called when component first renders and whenever term changes
+            // if useEffect returns a function along with the other code, the whole function with the returned func will get called when component renders
+            // but when the term changes, the return function gets called first after which the other existing code gets executed.
+            // cleanup code is normally written in the returned function like below where we are clearing the timeout
+            // above will wait for 500ms before triggering a request to API (throttling/debouncing)
+            return () => {
+                clearTimeout(timeoutId);
+            };
+        }
     }, [term]);
 
     const renderedResults = results.map((result) => {
         return (
-            <div className='item' key='result.pageid'>
+            <div className='item' key={result.pageid}>
+                <div className='right floated content'>
+                    <a
+                        className='ui button'
+                        href={`https://en.wikipedia.org?curid=${result.pageid}`}>
+                        Go to Article
+                    </a>
+                </div>
                 <div className='content'>
                     <div className='header'>{result.title}</div>
-                    {result.snippet}
+                    {/* below is done bcoz api was returning content with embedded html elements */}
+                    <span
+                        dangerouslySetInnerHTML={{
+                            __html: result.snippet,
+                        }}></span>
+                    {/* {result.snippet} */}
                 </div>
             </div>
         );

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { React, useState } from 'react';
 import './App.css';
 
 import Accordion from './components/Accordion.component';
 import Search from './components/Search.component';
 import Dropdown from './components/Dropdown.component';
 import Translate from './components/Translate.component';
+import Route from './components/Route.component';
+import Header from './components/Header.component';
 
 const items = [
     { title: 'What is React?', content: 'A frontend JS Library' },
@@ -23,23 +25,26 @@ const options = [
 
 function App() {
     const [selected, setSelected] = useState(options[0]);
-    const [showDropdown, setShowDropdown] = useState(true);
     return (
         <div className='App'>
-            {/* <Accordion items={items} /> */}
-            {/* <Search /> */}
-            {/* <button onClick={() => setShowDropdown(!showDropdown)}>
-                Toggle Dropdown
-            </button>
-            {showDropdown ? (
+            <Header />
+            <Route path='/'>
+                <Accordion items={items} />
+            </Route>
+            <Route path='/search'>
+                <Search />
+            </Route>
+            <Route path='/dropdown'>
                 <Dropdown
                     options={options}
                     selected={selected}
                     onSelectedChange={setSelected}
                     title={'Select a Color'}
                 />
-            ) : null} */}
-            <Translate />
+            </Route>
+            <Route path='/translate'>
+                <Translate />
+            </Route>
         </div>
     );
 }

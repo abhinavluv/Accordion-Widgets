@@ -55,6 +55,15 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
                         {renderedOptions}
                     </div>
                 </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <p style={{ color: selected.color, fontWeight: 'bold' }}>
+                    {selected.label}
+                </p>
             </div>
         </div>
     );

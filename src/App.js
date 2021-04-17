@@ -36,6 +36,7 @@ function App() {
                     options={options}
                     selected={selected}
                     onSelectedChange={setSelected}
+                    title={'Select a Color'}
                 />
             ) : null} */}
             <Translate />
